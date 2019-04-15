@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if user_email is None and id_token is None %}
+	<p><h1> You are now logged out! </h1></p><br>
+	<p> <a href="/accounts/authorize"> Log back in? </a></p>
+
+{% else %} 
+
+ Hi {{user_email}}!
+ <br>
+ idtoken -  {{id_token}}
+ <br>
+ {% if access_token is None %}
+ 	<a href="/accounts/getaccesstoken"><input type="button" id="acess_token" value="Get Access Token"/></a>
+ {% else %}
+ 	access_token - {{access_token}}
+ {% endif %}
+  <p><a href="/accounts/logout1">logout</a></p>
+  <p><a href="/accounts/resetpassword">reset password</a></p>
+  
+{% endif %}
+
+{% endblock %}
